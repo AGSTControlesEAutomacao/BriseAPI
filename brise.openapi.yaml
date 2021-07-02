@@ -44,6 +44,7 @@ tags:
     description: |
       A agenda contempla registros de agendamentos locais que serão executados de forma independente do serviço de Cloud, sendo garantida a execução do agendamento.
       <aside>Os agendamentos não tem como intensão a garantia da permanência do estado do dispositivo ou do AC durante um período, ou seja, podem haver alterações do contexto por usuários autorizados durante este período.
+  - name: Históricos
 
 servers:
   - url: "https://brisev2.agst.com.br:8090/api/v2"
@@ -396,6 +397,42 @@ components:
         pulseKw:
           minimum: 1
           maximum: 65535
+    measurements:
+      type: object
+      properties:
+        temperature:
+          type: integer
+          description: Temperatura ambiente
+          example: 24.2
+        humidity:
+          type: integer
+          description: Umidade ambiente
+          example: 50
+        timestamp:
+          type: integer
+          description: Data do registro
+          example: 151523456
+    dateRange:
+      type: object
+      properties:
+        dateFirst:
+          description: Data de inicio dos registros `Se não enviado será assumido a data mais antiga`
+          type: number
+        dateLast:
+          description: Data de fim dos registros `Se não enviado será assumido a data mais atual`
+          type: number
+    pageRange:
+      type: object
+      properties:
+        pageStart:
+          description: Inicio dos registros `Se não definido será assumido valor default`
+          type: number
+          default: 1
+        pageSize:
+          description: Quantidade dos registros `Se não definido será assumido valor default`
+          type: number
+          default: 100
+          maximum: 1000
 
   responses:
     Unauthorized:
@@ -695,7 +732,6 @@ paths:
                   properties:
                     parameter:
                       $ref: "#/components/schemas/parameterput"
-
       responses:
         "202":
           description: Accepted. Novo agendamento ao dispositivo adicionado com sucesso.
@@ -725,7 +761,6 @@ paths:
                   properties:
                     parameter:
                       $ref: "#/components/schemas/parameterput"
-
       parameters:
         - $ref: "#/components/parameters/scheduleId"
         - $ref: "#/components/parameters/deviceId"
@@ -755,6 +790,56 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+
+  "/device/{deviceId}/measurements":
+    get:
+      summary: Obtém medidas
+      description: Obtém o histórico de medidas de temperatura e umidade<aside>Caso não seja enviado nenhum query parameters o retorno será os registros das últimas 24hrs</aside>
+      tags:
+        - Históricos
+      parameters:
+        - in: path
+          $ref: "#/components/parameters/deviceId"
+        - in: query
+          name: filter
+          required: true
+          schema:
+            oneOf:
+              - $ref: "#/components/schemas/dateRange"
+              - $ref: "#/components/schemas/pageRange"
+      responses:
+        "200":
+          description: OK. Retorna todos os registros respeitando os filtros.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Numero total de registros armazenados no servidor
+                    example: 100
+                  oldest:
+                    type: integer
+                    description: Data mais antiga
+                    example: 1611588442
+                  newest:
+                    type: integer
+                    description: Data mais nova
+                    example: 1625228755
+                  regords:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/measurements"
+  "/device/{deviceId}/logs":
+    get:
+      summary: Obtém registros
+      description: Obtém o histórico de registros de ações
+      tags:
+        - Históricos
+      responses:
+        "200":
+          description: OK.
 
 security:
   - briseAuth: []
