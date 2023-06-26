@@ -262,6 +262,10 @@ components:
     config:
       type: object
       properties:
+        NPT:
+          type: integer
+          description: Tempo limite para deflagar falta de presença
+          example: 0
         name:
           type: string
           description: Nome para identificação do dispositivo
