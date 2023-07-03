@@ -367,10 +367,13 @@ components:
           example: true
     configput:
       required:
-        [name, timeZone, btu, logDay, pulseKw, enableFan, enableHeat, dnd]
+        [NPT, name, timeZone, btu, logDay, pulseKw, enableFan, enableHeat, dnd]
       allOf:
         - $ref: "#/components/schemas/config"
       properties:
+        NPT:
+          minimum: 1
+          maximum: 65535
         name:
           maxLength: 20
           pattern: ^[A-Za-z0-9\s]$
