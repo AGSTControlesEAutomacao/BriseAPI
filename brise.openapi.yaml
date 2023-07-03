@@ -264,7 +264,7 @@ components:
       properties:
         NPT:
           type: integer
-          description: Tempo limite para deflagar falta de presença.
+          description: Tempo limite para deflagar falta de presença
           example: 0
         name:
           type: string
