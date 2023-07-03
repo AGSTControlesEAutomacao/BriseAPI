@@ -217,6 +217,7 @@ components:
     parameterput:
       required:
         [
+          NPT,
           modeDevice,
           modeAC,
           setpointCool,
@@ -228,6 +229,9 @@ components:
       allOf:
         - $ref: "#/components/schemas/parameter"
       properties:
+        NPT:
+          minimum: 0
+          maximum: 65535
         modeDevice:
           minimum: 0
           maximum: 3
