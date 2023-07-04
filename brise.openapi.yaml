@@ -644,7 +644,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/variables"
+              required:
+                [
+                  temperature,
+                  humidity,
+                  consumption,
+                  consumptionEstimated,
+                  state,
+                ]
+              allOf:
+                - $ref: "#/components/schemas/variables"
       responses:
         "200":
           description: OK. Retorna as variaveis do sistema com sucesso.
