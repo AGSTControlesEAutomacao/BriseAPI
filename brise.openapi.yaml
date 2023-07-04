@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Brise API
-  version: 2.0.0
+  version: 2.0.1
   contact:
     name: AGST
     url: https://forum.agst.com.br
@@ -27,7 +27,7 @@ info:
 
     **Aletar:** Estamos em fase de testes.
 
-    Última atualização: 26/05/2021
+    Última atualização: 04/07/2023
   x-logo:
     url: ../logo_Brise1.svg
     href: https://www.agst.com.br/produtos/brise/
