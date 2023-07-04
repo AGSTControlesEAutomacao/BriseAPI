@@ -121,15 +121,15 @@ components:
           example: 65535
         OFF:
           type: integer
-          description: Hash do acelerômetro para definir se a máquina esta desligada
+          description: Integral do acelerômetro para definir se a máquina esta desligada
           example: 123046
         ON:
           type: integer
-          description: Hash do acelerômetro para definir se a máquina esta ligada
+          description: Integral do acelerômetro para definir se a máquina esta ligada
           example: 669723
         ACC:
           type: integer
-          description: Hash da leitura atual do acelerômetro
+          description: Integral da leitura atual do acelerômetro
           example: 124106
         temperature:
           type: number
