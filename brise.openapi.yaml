@@ -115,10 +115,22 @@ components:
     variables:
       type: object
       properties:
-        state:
-          type: boolean
-          description: Estatus do AC
-          example: true
+        WM:
+          type: integer
+          description: Tempo restante para deflagrar falta de presença
+          example: 65535
+        OFF:
+          type: integer
+          description: Hash do acelerômetro para definir se a máquina esta desligada
+          example: 123046
+        ON:
+          type: integer
+          description: Hash do acelerômetro para definir se a máquina esta ligada
+          example: 669723
+        ACC:
+          type: integer
+          description: Hash da leitura atual do acelerômetro
+          example: 124106
         temperature:
           type: number
           description: Temperatura do ambiente em [ºC]
@@ -135,6 +147,10 @@ components:
           type: integer
           description: Consumo estimado do mês vigente em [KWh] `Estimado pelo perfil do uso e capacidade do AC`
           example: 50
+        state:
+          type: boolean
+          description: Estatus do AC
+          example: true
     devices:
       type: object
       properties:
