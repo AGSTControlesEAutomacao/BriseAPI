@@ -639,12 +639,6 @@ paths:
         - Dispositivo
       parameters:
         - $ref: "#/components/parameters/deviceId"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/variables"
       responses:
         "200":
           description: OK. Retorna as variaveis do sistema com sucesso.
