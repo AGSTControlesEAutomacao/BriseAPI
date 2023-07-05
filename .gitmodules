@@ -1,3 +1,4 @@
 [submodule "offline"]
 	path = offline
 	url = https://github.com/AGSTControlesEAutomacao/BriseOfflineAPI.git
+	branch = master
