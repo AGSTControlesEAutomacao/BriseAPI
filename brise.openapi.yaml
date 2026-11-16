@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Brise API
-  version: 2.0.0
+  version: 2.0.1
   contact:
     name: AGST
     url: https://forum.agst.com.br
@@ -25,7 +25,7 @@ info:
           --header 'Authorization: Bearer 2gbdx6oar67tqtcmt49t3wpcgycthx'
         ```
 
-    **Aletar:** Estamos em fase de testes.
+    **Nota:** API para Brises primeira geração
 
     Última atualização: 26/05/2021
   x-logo:
